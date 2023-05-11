@@ -33,28 +33,28 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
         device: str = "cuda:0"
     ):
         self._modality = modality
-        device = "cuda:0" if torch.cuda.is_available() else "cpu"
+        self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
         self._model = imagebind_model.imagebind_huge(pretrained=True)
         self._model.eval()
-        self._model.to(device)
+        self._model.to(self.device)
 
     def __call__(self, *args: Documents) -> Embeddings:
         if self._modality == ModalityType.TEXT:
             inputs = {
                 ModalityType.TEXT: load_and_transform_text(
-                    args[0], self._model.device
+                    args[0], self.device
                 )
             }
         elif self._modality == ModalityType.VISION:
             inputs = {
                 ModalityType.VISION: load_and_transform_vision_data(
-                    args[0], self._model.device
+                    args[0], self.device
                 )
             }
         elif self._modality == ModalityType.AUDIO:
             inputs = {
                 ModalityType.AUDIO: load_and_transform_audio_data(
-                    args[0], self._model.device
+                    args[0], self.device
                 )
             }
         else:
