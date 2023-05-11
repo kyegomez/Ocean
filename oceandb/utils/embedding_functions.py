@@ -63,7 +63,11 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
         with torch.no_grad():
             embeddings = self._model(inputs)
 
-        return embeddings[self._modality]
+        # Convert the embeddings ndarray to a list of embeddings
+        embeddings_list = [embedding for embedding in embeddings[self._modality]]
+
+        return embeddings_list
+
 
 
 """
