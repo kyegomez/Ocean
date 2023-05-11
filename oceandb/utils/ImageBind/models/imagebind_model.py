@@ -14,14 +14,17 @@ from types import SimpleNamespace
 import torch
 import torch.nn as nn
 
-from models.helpers import (
+
+
+
+from .helpers import (
     EinOpsRearrange,
     LearnableLogitScaling,
     Normalize,
     SelectElement,
     SelectEOSAndProject,
 )
-from models.multimodal_preprocessors import (
+from .multimodal_preprocessors import (
     AudioPreprocessor,
     IMUPreprocessor,
     PadIm2Video,
@@ -32,7 +35,7 @@ from models.multimodal_preprocessors import (
     ThermalPreprocessor,
 )
 
-from models.transformer import MultiheadAttention, SimpleTransformer
+from .transformer import MultiheadAttention, SimpleTransformer
 
 
 ModalityType = SimpleNamespace(
