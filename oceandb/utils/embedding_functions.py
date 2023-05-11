@@ -23,7 +23,7 @@ class SentenceTransformerEmbeddingFunction(EmbeddingFunction):
 
     def __call__(self, texts: Documents) -> Embeddings:
         return self._model.encode(list(texts), convert_to_numpy=True).tolist()
-
+#
 
 class ImageBindEmbeddingFunction(EmbeddingFunction):
     def __init__(
