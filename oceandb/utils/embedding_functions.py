@@ -30,6 +30,7 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
         self,
         modality: str = ModalityType,  # type: ignore
         model_path: str = "https://dl.fbaipublicfiles.com/imagebind/imagebind_huge.pth",
+        device: str = "cuda"
     ):
         self._modality = modality
         device = "cuda:0" if torch.cuda.is_available() else "cpu"
