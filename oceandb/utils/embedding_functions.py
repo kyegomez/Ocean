@@ -3,8 +3,7 @@ from typing import Optional
 import torch
 from .ImageBind.models import imagebind_model
 from .ImageBind.models.imagebind_model import ModalityType
-from .ImageBind.data import data  # type: ignore
-
+from .ImageBind.data import load_and_transform_text, load_and_transform_vision_data, load_and_transform_audio_data
 
 class SentenceTransformerEmbeddingFunction(EmbeddingFunction):
     models = {}
@@ -41,19 +40,19 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
     def __call__(self, *args: Documents) -> Embeddings:
         if self._modality == ModalityType.TEXT:
             inputs = {
-                ModalityType.TEXT: data.load_and_transform_text(
+                ModalityType.TEXT: load_and_transform_text(
                     args[0], self._model.device
                 )
             }
         elif self._modality == ModalityType.VISION:
             inputs = {
-                ModalityType.VISION: data.load_and_transform_vision_data(
+                ModalityType.VISION: load_and_transform_vision_data(
                     args[0], self._model.device
                 )
             }
         elif self._modality == ModalityType.AUDIO:
             inputs = {
-                ModalityType.AUDIO: data.load_and_transform_audio_data(
+                ModalityType.AUDIO: load_and_transform_audio_data(
                     args[0], self._model.device
                 )
             }
