@@ -44,6 +44,7 @@ The core API is only 4 functions (run our [💡 Google Colab](https://colab.rese
 ```python
 import oceandb
 from oceandb import emedding_functions
+from oceandb.embedding_functions import ImageBindEmbeddingFunction
 
 # setup Ocean in-memory, for easy prototyping. Can add persistence easily!
 client = oceandb.Client()
