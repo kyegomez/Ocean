@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+set -e
+
+export OCEAN_PORT=8000
+
+function cleanup {
+  docker compose -f docker-compose.test.yml down --rmi local --volumes
+}
+
+trap cleanup EXIT
+
+docker compose -f docker-compose.test.yml up --build -d
+
+export OCEAN_INTEGRATION_TEST_ONLY=1
+export OCEAN_API_IMPL=rest
+export OCEAN_SERVER_HOST=localhost
+export OCEAN_SERVER_HTTP_PORT=8000
+
+echo testing: python -m pytest "$@"
+python -m pytest "$@"
+
+cd clients/js
+yarn
+yarn test:run
+cd ../..

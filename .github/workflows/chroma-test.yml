@@ -1,0 +1,41 @@
+name: Ocean Tests
+
+on:
+  push:
+    branches:
+      - main
+      - team/hypothesis-tests
+  pull_request:
+    branches:
+      - main
+      - team/hypothesis-tests
+
+jobs:
+  test:
+    timeout-minutes: 90
+    strategy:
+      matrix:
+        python: ["3.7", "3.8", "3.9", "3.10"]
+        platform: [ubuntu-latest]
+        testfile:
+          [
+            "--ignore-glob 'oceandb/test/property/*'",
+            "oceandb/test/property/test_add.py",
+            "oceandb/test/property/test_collections.py",
+            "oceandb/test/property/test_cross_version_persist.py",
+            "oceandb/test/property/test_embeddings.py",
+            "oceandb/test/property/test_filtering.py",
+            "oceandb/test/property/test_persist.py",
+          ]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install test dependencies
+        run: python -m pip install -r requirements.txt && python -m pip install -r requirements_dev.txt
+      - name: Test
+        run: python -m pytest ${{ matrix.testfile }}

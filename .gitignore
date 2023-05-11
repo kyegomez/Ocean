@@ -1,0 +1,24 @@
+# ignore mac created DS_Store files
+**/.DS_Store
+
+**/__pycache__
+
+*.log
+
+**/data__nogit
+
+**/.ipynb_checkpoints
+
+index_data
+
+venv
+.env
+.ocean
+*.egg-info
+dist
+
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+.hypothesis/
+.idea

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+set -e
+
+# Assert first argument is present
+if [ -z "$1" ]; then
+    echo "Usage: bin/test-remote <remote-host>"
+    exit 1
+fi
+
+export OCEAN_INTEGRATION_TEST_ONLY=1
+export OCEAN_SERVER_HOST=$1
+export OCEAN_API_IMPL=rest
+export OCEAN_SERVER_HTTP_PORT=8000
+
+python -m pytest
