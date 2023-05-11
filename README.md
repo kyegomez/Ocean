@@ -2,10 +2,12 @@
   <a href="https://apac.ai"><img src="/data-ocean-banner.png" alt="Ocean logo"></a>
 </p>
 
-<p align="center">
-    <b>Ocean - Ultra-Fast MultiModality Vector Database</b>. <br />
-    Embed anything: images, pdfs, videos, movies and retrieve them back at lightspeed
-</p>
+# Ocean 🌊🐠
+
+Ocean is a powerful, flexible, and easy-to-use library for cross-modal and modality-specific searching. It provides a unified interface for embedding and querying text, images, and audio. Ocean leverages the latest advancements in deep learning and the power of the ImageBind Embedding model to deliver unparalleled search accuracy and performance.
+
+
+
 
 <p align="center">
   <a href="https://discord.gg/MMeYNTmh3x" target="_blank">
@@ -57,10 +59,14 @@ collection.add(
 )
 
 #for example to use imagebindfunction
-text_embedding_function = embedding_functions.ImageBindEmbeddingFunction(modality=ModalityType.TEXT)
-vision_embedding_function = embedding_functions.ImageBindEmbeddingFunction(modality=ModalityType.VISION)
-audio_embedding_function = embedding_functions.ImageBindEmbeddingFunction(modality=ModalityType.AUDIO)
+text_embedding_function = ImageBindEmbeddingFunction(modality=ModalityType.TEXT)
+vision_embedding_function = ImageBindEmbeddingFunction(modality=ModalityType.VISION)
+audio_embedding_function = ImageBindEmbeddingFunction(modality=ModalityType.AUDIO)
 
+# Embed text, vision, and audio data
+text_embeddings = text_embedding_function(text_data)
+vision_embeddings = vision_embedding_function(vision_data)
+audio_embeddings = audio_embedding_function(audio_data)
 
 # Query/search 2 most similar results. You can also .get by id
 results = collection.query(
@@ -98,6 +104,21 @@ What are embeddings?
 - **A small example**: If you search your photos for "famous bridge in San Francisco". By embedding this query and comparing it to the embeddings of your photos and their metadata - it should return photos of the Golden Gate Bridge.
 
 Embeddings databases (also known as **vector databases**) store embeddings and allow you to search by nearest neighbors rather than by substrings like a traditional database. By default, Ocean uses [ImageBind](https://github.com/facebookresearch/ImageBind) to embed for you but you can also use OpenAI embeddings, Cohere (multilingual) embeddings, or your own.
+
+
+
+## Roadmap 🗺️
+
+- [ ] Integrate the new 3 loss functions (conditional, cross-modal, and unimodality)
+- [ ] Integrate ImageBind model to embed images, text, and audio as a native embedder
+- [ ] Implement a method to choose query algorithm: `query([vectors], search_algorithm="knn")`
+- [ ] Implement shapeless and polymorphic support
+- [ ] Explore the integration of database worker agents that manage the embedding, tokenization, and indexation (like a swarm)
+- [ ] Implement an endless context length embedding model
+- [ ] Enable running the ImageBind embedding model offline in a database repository
+- [ ] Allow users to choose modality in the upsert method
+- [ ] Deploy ImageBind as an API and increase context length
+
 
 ## Get involved at Agora
 
