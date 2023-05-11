@@ -16,7 +16,7 @@ pip install -r requirements.txt
 pip install -r requirements_dev.txt
 pre-commit install # install the precommit hooks
 ```
-
+!
 You can also install `oceandb` the `pypi` package locally and in editable mode with `pip install -e .`.
 
 ## Running Ocean
