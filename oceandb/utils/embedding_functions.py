@@ -24,7 +24,6 @@ class SentenceTransformerEmbeddingFunction(EmbeddingFunction):
     def __call__(self, texts: Documents) -> Embeddings:
         return self._model.encode(list(texts), convert_to_numpy=True).tolist()
 #
-
 class ImageBindEmbeddingFunction(EmbeddingFunction):
     def __init__(
         self,
@@ -45,7 +44,7 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
                     args[0], self.device
                 )
             }
-            print(inputs)
+            print("Inputs:", inputs)
         elif self._modality == ModalityType.VISION:
             inputs = {
                 ModalityType.VISION: load_and_transform_vision_data(
@@ -64,18 +63,17 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
         with torch.no_grad():
             embeddings = self._model(inputs)
         
-        print(embeddings)
+        print("Embeddings:", embeddings)
 
         # Convert the embeddings tensor to a NumPy array and then to a list of lists (embeddings)
         embeddings_array = embeddings[self._modality].cpu().numpy()
 
-        print(embeddings_array)
+        print("Embeddings array:", embeddings_array)
         # embeddings_list = embeddings_array.tolist()
 
         # return embeddings_list
 
         return [embedding.tolist() for embedding in embeddings_array]
-
 
 
 """
