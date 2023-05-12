@@ -59,25 +59,15 @@ text_embedding_function = ImageBindEmbeddingFunction(modality="text")
 #vision
 #vision_embedding_function = ImageBindEmbeddingFunction(modality="vision")
 
+#audio
+#audio_embedding_function = ImageBindEmbeddingFunction(modality="audio")
+
 # # Create collection. get_collection, get_or_create_collection, delete_collection also available and add embedding function
 collection = client.create_collection("all-my-documents", embedding_function=text_embedding_function)
 
-# # Add docs to the collection. Can also update and delete. Row-based API coming soon!
-# collection.add(
-#     documents=["This is document1", "This is document2"], # we handle tokenization, embedding, and indexing automatically. You can skip that and add your own embeddings as well
-#     metadatas=[{"source": "notion"}, {"source": "google-docs"}], # filter on these!
-#     ids=["doc1", "doc2"], # unique for each doc
-# )
 
-#for example to use imagebindfunction
 
 text_data = ['This is a query about artificial intelligence']
-
-# Embed text, vision, and audio data
-# text_embeddings = text_embedding_function(text_data)
-# vision_embeddings = vision_embedding_function(vision_data)
-# audio_embeddings = audio_embedding_function(audio_data)
-# text_embedding_list = [embedding for embedding in text_embeddings]
 
 #test
 test = collection.add(
