@@ -43,39 +43,60 @@ The core API is only 4 functions (run our [💡 Google Colab](https://colab.rese
 
 ```python
 import oceandb
-from oceandb import emedding_functions
-from oceandb.embedding_functions import ImageBindEmbeddingFunction
+api = oceandb.Client()
+print(api.heartbeat())
+
+from oceandb.utils.embedding_functions import ImageBindEmbeddingFunction
+
 
 # setup Ocean in-memory, for easy prototyping. Can add persistence easily!
 client = oceandb.Client()
 
-# Create collection. get_collection, get_or_create_collection, delete_collection also available!
-collection = client.create_collection("all-my-documents")
+#text
+text_embedding_function = ImageBindEmbeddingFunction(modality="text")
 
-# Add docs to the collection. Can also update and delete. Row-based API coming soon!
-collection.add(
-    documents=["This is document1", "This is document2"], # we handle tokenization, embedding, and indexing automatically. You can skip that and add your own embeddings as well
-    metadatas=[{"source": "notion"}, {"source": "google-docs"}], # filter on these!
-    ids=["doc1", "doc2"], # unique for each doc
-)
+
+#vision
+#vision_embedding_function = ImageBindEmbeddingFunction(modality="vision")
+
+# # Create collection. get_collection, get_or_create_collection, delete_collection also available and add embedding function
+collection = client.create_collection("all-my-documents", embedding_function=text_embedding_function)
+
+# # Add docs to the collection. Can also update and delete. Row-based API coming soon!
+# collection.add(
+#     documents=["This is document1", "This is document2"], # we handle tokenization, embedding, and indexing automatically. You can skip that and add your own embeddings as well
+#     metadatas=[{"source": "notion"}, {"source": "google-docs"}], # filter on these!
+#     ids=["doc1", "doc2"], # unique for each doc
+# )
 
 #for example to use imagebindfunction
-text_embedding_function = ImageBindEmbeddingFunction(modality=ModalityType.TEXT)
-vision_embedding_function = ImageBindEmbeddingFunction(modality=ModalityType.VISION)
-audio_embedding_function = ImageBindEmbeddingFunction(modality=ModalityType.AUDIO)
+
+text_data = ['This is a query about artificial intelligence']
 
 # Embed text, vision, and audio data
-text_embeddings = text_embedding_function(text_data)
-vision_embeddings = vision_embedding_function(vision_data)
-audio_embeddings = audio_embedding_function(audio_data)
+# text_embeddings = text_embedding_function(text_data)
+# vision_embeddings = vision_embedding_function(vision_data)
+# audio_embeddings = audio_embedding_function(audio_data)
+# text_embedding_list = [embedding for embedding in text_embeddings]
 
-# Query/search 2 most similar results. You can also .get by id
-results = collection.query(
-    query_texts=["This is a query document"],
-    n_results=2,
-    # where={"metadata_field": "is_equal_to_this"}, # optional filter
-    # where_document={"$contains":"search_string"}  # optional filter
+#test
+test = collection.add(
+    documents=text_data,
+    ids=['doc1']
 )
+
+print(test)
+
+#query result
+results = collection.query(
+    query_texts=[query_text],
+    n_results=1
+)
+
+print(f"Query texts {query_text}")
+print("Most similar document:", results['documents'][0][0])
+
+
 ```
 
 ## Features
