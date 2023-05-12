@@ -45,6 +45,7 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
                     args[0], self.device
                 )
             }
+            print(inputs)
         elif self._modality == ModalityType.VISION:
             inputs = {
                 ModalityType.VISION: load_and_transform_vision_data(
@@ -62,9 +63,13 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
 
         with torch.no_grad():
             embeddings = self._model(inputs)
+        
+        print(embeddings)
 
         # Convert the embeddings tensor to a NumPy array and then to a list of lists (embeddings)
         embeddings_array = embeddings[self._modality].cpu().numpy()
+
+        print(embeddings_array)
         # embeddings_list = embeddings_array.tolist()
 
         # return embeddings_list
