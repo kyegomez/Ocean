@@ -65,9 +65,11 @@ class ImageBindEmbeddingFunction(EmbeddingFunction):
 
         # Convert the embeddings tensor to a NumPy array and then to a list of lists (embeddings)
         embeddings_array = embeddings[self._modality].cpu().numpy()
-        embeddings_list = embeddings_array.tolist()
+        # embeddings_list = embeddings_array.tolist()
 
-        return embeddings_list
+        # return embeddings_list
+
+        return [embedding.tolist() for embedding in embeddings_array]
 
 
 
