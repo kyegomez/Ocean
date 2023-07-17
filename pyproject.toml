@@ -3,8 +3,7 @@ name = "oceandb"
 dynamic = ["version"]
 
 authors = [
-  { name="Jeff Huber", email="jeff@tryocean.com" },
-  { name="Anton Troynikov", email="anton@tryocean.com" }
+  { name="Kye Gomez", email="kye@apac.ai" }
 ]
 description = "Ocean."
 readme = "README.md"

@@ -6,9 +6,6 @@
 
 Ocean is a powerful, flexible, and easy-to-use library for cross-modal and modality-specific searching. It provides a unified interface for embedding and querying text, images, and audio. Ocean leverages the latest advancements in deep learning and the power of the ImageBind Embedding model to deliver unparalleled search accuracy and performance.
 
-
-
-
 <p align="center">
   <a href="https://discord.gg/MMeYNTmh3x" target="_blank">
       <img src="https://img.shields.io/discord/1073293645303795742" alt="Discord">
@@ -46,21 +43,21 @@ import oceandb
 api = oceandb.Client()
 print(api.heartbeat())
 
-from oceandb.utils.embedding_functions import ImageBindEmbeddingFunction
+from oceandb.utils.embedding_functions import MultiModalEmbeddingFunction
 
 
 # setup Ocean in-memory, for easy prototyping. Can add persistence easily!
 client = oceandb.Client()
 
 #text
-text_embedding_function = ImageBindEmbeddingFunction(modality="text")
+text_embedding_function = MultiModalEmbeddingFunction(modality="text")
 
 
 #vision
-#vision_embedding_function = ImageBindEmbeddingFunction(modality="vision")
+#vision_embedding_function = MultiModalEmbeddingFunction(modality="vision")
 
 #audio
-#audio_embedding_function = ImageBindEmbeddingFunction(modality="audio")
+#audio_embedding_function = MultiModalEmbeddingFunction(modality="audio")
 
 # # Create collection. get_collection, get_or_create_collection, delete_collection also available and add embedding function
 collection = client.create_collection("all-my-documents", embedding_function=text_embedding_function)
@@ -117,8 +114,6 @@ What are embeddings?
 
 Embeddings databases (also known as **vector databases**) store embeddings and allow you to search by nearest neighbors rather than by substrings like a traditional database. By default, Ocean uses [ImageBind](https://github.com/facebookresearch/ImageBind) to embed for you but you can also use OpenAI embeddings, Cohere (multilingual) embeddings, or your own.
 
-
-
 ## Roadmap 🗺️
 
 - [ ] Integrate the new 3 loss functions (conditional, cross-modal, and unimodality)
@@ -130,7 +125,6 @@ Embeddings databases (also known as **vector databases**) store embeddings and a
 - [ ] Enable running the ImageBind embedding model offline in a database repository
 - [ ] Allow users to choose modality in the upsert method
 - [ ] Deploy ImageBind as an API and increase context length
-
 
 ## Get involved at Agora
 

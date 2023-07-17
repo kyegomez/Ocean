@@ -253,7 +253,7 @@ class SearchFunction(ABC):
 class CrossModalRetrieval(SearchFunction):
 
     """
-    Use the provided ImageBindEmbeddingFunction to compute embeddings for the query.
+    Use the provided MultiModalEmbeddingFunction to compute embeddings for the query.
     Select the corresponding embeddings of the other modality.
     Perform similarity search using the computed embeddings.
     Return the results.
