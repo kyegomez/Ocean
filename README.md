@@ -4,7 +4,7 @@
 Ocean is a powerful, flexible, and easy-to-use library for cross-modal and modality-specific searching. It provides a unified interface for embedding and querying text, images, and audio. Ocean leverages the latest advancements in deep learning and the power of the ImageBind Embedding model to deliver unparalleled search accuracy and performance.
 
 <p align="center">
-  <a href="https://discord.gg/MMeYNTmh3x" target="_blank">
+  <a href="https://discord.gg/qUtxnK2NMf" target="_blank">
       <img src="https://img.shields.io/discord/1073293645303795742" alt="Discord">
   </a> |
   <a href="https://github.com/ocean-core/ocean/blob/master/LICENSE" target="_blank">
