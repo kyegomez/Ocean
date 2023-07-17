@@ -1,6 +1,3 @@
-<p align="center">
-  <a href="https://apac.ai"><img src="/data-ocean-banner.png" alt="Ocean logo"></a>
-</p>
 
 # Ocean 🌊🐠
 
