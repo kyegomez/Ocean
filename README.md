@@ -28,6 +28,8 @@ Ocean is a powerful, flexible, and easy-to-use library for cross-modal and modal
 </p>
 
 ```bash
+pip install oceandb
+#or 
 pip install https://github.com/kyegomez/Ocean.git # python client
 # for javascript, npm install oceandb!
 # for client-server mode, docker-compose up -d --build

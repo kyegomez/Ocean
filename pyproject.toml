@@ -1,32 +1,27 @@
-[project]
+[tool.poetry]
 name = "oceandb"
-dynamic = ["version"]
-
-authors = [
-  { name="Kye Gomez", email="kye@apac.ai" }
-]
+version = "0.1.0"  # You need to specify a version
 description = "Ocean."
+authors = ["Kye Gomez <kye@apac.ai>"]
 readme = "README.md"
-requires-python = ">=3.7"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Apache Software License",
-    "Operating System :: OS Independent",
-]
-dependencies = [
-  'pandas >= 1.3',
-  'requests >= 2.28',
-  'pydantic >= 1.9',
-  'hnswlib >= 0.7',
-  'clickhouse_connect >= 0.5.7',
-  'sentence-transformers >= 2.2.2',
-  'duckdb >= 0.7.1',
-  'fastapi >= 0.85.1',
-  'uvicorn[standard] >= 0.18.3',
-  'numpy >= 1.21.6',
-  'posthog >= 2.4.0',
-  'typing_extensions >= 4.5.0'
-]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+pandas = "^1.3"
+requests = "^2.28"
+pydantic = "^1.9"
+hnswlib = "^0.7"
+clickhouse_connect = "^0.5.7"
+sentence-transformers = "^2.2.2"
+duckdb = "^0.7.1"
+fastapi = "^0.85.1"
+uvicorn = {version = "^0.18.3", extras = ["standard"]}
+numpy = "^1.21.6"
+posthog = "^2.4.0"
+typing_extensions = "^4.5.0"
+
+[tool.poetry.dev-dependencies]
+# Add your dev dependencies here if any
 
 [tool.black]
 line-length = 88
@@ -36,13 +31,13 @@ target-version = ['py36', 'py37', 'py38', 'py39', 'py310']
 [tool.pytest.ini_options]
 pythonpath = ["."]
 
-[project.urls]
-"Homepage" = "https://github.com/ocean-core/ocean"
-"Bug Tracker" = "https://github.com/ocean-core/ocean/issues"
+[tool.poetry.urls]
+"Homepage" = "https://github.com/kyegomez/ocean"
+"Bug Tracker" = "https://github.com/kyegomez/ocean/issues"
 
 [build-system]
-requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
 
 [tool.setuptools_scm]
 local_scheme="no-local-version"
