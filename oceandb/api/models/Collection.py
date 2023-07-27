@@ -10,7 +10,6 @@ from oceandb.api.types import (
     Document,
     ModalitySpecificSearching,
     MultiModalFusion,
-    SearchFunction,
     Where,
     IDs,
     EmbeddingFunction,
@@ -230,11 +229,11 @@ class Collection(BaseModel):
 
         if search_function:
             if search_function == "cross_modal_retrieval":
-                search_instance = CrossModalRetrieval()  # type: ignore
+                CrossModalRetrieval()  # type: ignore
             elif search_function == "multi_modal_fusion":
-                search_instance = MultiModalFusion()  # type: ignore
+                MultiModalFusion()  # type: ignore
             elif search_function == "modality_specific_searching":
-                search_instance = ModalitySpecificSearching()  # type: ignore
+                ModalitySpecificSearching()  # type: ignore
             else:
                 raise ValueError("Invalid search function specified")
 

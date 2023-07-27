@@ -2,7 +2,6 @@ from typing import Optional, Union, Dict, Sequence, TypeVar, List
 from typing_extensions import Literal, TypedDict, Protocol
 import oceandb.errors as errors
 from abc import ABC, abstractmethod
-import torch.nn as nn
 
 # from ..utils.ImageBind.imagebind_model import ModalityType
 from ..utils.ImageBind.models.imagebind_model import ModalityType
