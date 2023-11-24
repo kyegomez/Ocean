@@ -9,7 +9,7 @@ requests==2.28.1
 sentence-transformers==2.2.2
 typing_extensions==4.5.0
 uvicorn[standard]==0.18.3
-torch==1.13
+torch==1.13.1
 torchvision==0.14.0
 torchaudio==0.13.0
 pytorchvideo @ git+https://github.com/facebookresearch/pytorchvideo.git@28fe037d212663c6a24f373b94cc5d478c8c1a1d
